@@ -1,4 +1,15 @@
 :root {
+  --color-background: #050505;
+  --color-surface: #090a09;
+  --color-primary: #f4f4f0;
+  --color-secondary: #d5d6cf;
+  --color-supporting: #b9bab3;
+  --color-muted: #85867f;
+  --color-line: #343631;
+  --space-gutter: clamp(1.25rem, 7vw, 7rem);
+  --ease-cinematic: cubic-bezier(0.22, 0.61, 0.36, 1);
+  --duration-ui: 350ms;
+  --duration-scene: 900ms;
   color-scheme: dark;
   font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
   font-synthesis: none;
@@ -105,7 +116,7 @@ a:focus-visible {
   flex: 0 0 78vw;
   min-height: 100%;
   align-items: center;
-  padding: clamp(2rem, 8vw, 8rem);
+  padding: clamp(2rem, 8vw, 8rem) var(--space-gutter);
 }
 
 .about__panel--intro {
@@ -142,7 +153,7 @@ a:focus-visible {
   max-width: 8ch;
   margin: 0;
   color: #f4f4f0;
-  font-size: clamp(4.6rem, 13vw, 13rem);
+  font-size: clamp(4.2rem, 10vw, 10rem);
   font-weight: 500;
   letter-spacing: -0.09em;
   line-height: 0.82;
@@ -242,7 +253,7 @@ a:focus-visible {
   max-width: 9ch;
   margin: 0;
   color: #f4f4f0;
-  font-size: clamp(3.5rem, 7vw, 7rem);
+  font-size: clamp(3.25rem, 6vw, 6rem);
   font-weight: 500;
   letter-spacing: -0.085em;
   line-height: 0.88;
@@ -327,12 +338,10 @@ a:focus-visible {
   transition: color 450ms ease, transform 450ms ease;
 }
 
-.skills__category:nth-child(1) { top: 13%; left: 2%; }
-.skills__category:nth-child(2) { top: 45%; left: 2%; }
-.skills__category:nth-child(3) { top: 77%; left: 2%; }
-.skills__category:nth-child(4) { top: 13%; right: 0; }
-.skills__category:nth-child(5) { top: 45%; right: 0; }
-.skills__category:nth-child(6) { top: 77%; right: 0; }
+.skills__category:nth-child(1) { top: 18%; left: 2%; }
+.skills__category:nth-child(2) { top: 70%; left: 2%; }
+.skills__category:nth-child(3) { top: 18%; right: 0; }
+.skills__category:nth-child(4) { top: 70%; right: 0; }
 
 .skills__category:hover,
 .skills__category:focus-visible,
@@ -345,7 +354,8 @@ a:focus-visible {
   transform-origin: left center;
 }
 
-.skills__category:nth-child(n + 4).is-active {
+.skills__category:nth-child(3).is-active,
+.skills__category:nth-child(4).is-active {
   transform-origin: right center;
 }
 
@@ -425,7 +435,7 @@ a:focus-visible {
 .projects h2 {
   margin: 0;
   color: #f4f4f0;
-  font-size: clamp(3.5rem, 8vw, 8rem);
+  font-size: clamp(3.25rem, 6.8vw, 6.5rem);
   font-weight: 500;
   letter-spacing: -0.085em;
   line-height: 0.84;
@@ -755,7 +765,7 @@ a:focus-visible {
   max-width: 8ch;
   margin: 0;
   color: #f4f4f0;
-  font-size: clamp(3.2rem, 7vw, 7rem);
+  font-size: clamp(3.2rem, 6vw, 6rem);
   font-weight: 500;
   letter-spacing: -0.09em;
   line-height: 0.86;
@@ -864,7 +874,7 @@ a:focus-visible {
 
 .contact__content {
   width: 100%;
-  padding: clamp(3rem, 10vw, 10rem) clamp(1.25rem, 7vw, 7rem);
+  padding: clamp(3rem, 10vw, 10rem) var(--space-gutter);
 }
 
 .contact__eyebrow,
@@ -884,7 +894,7 @@ a:focus-visible {
   max-width: 11ch;
   margin: 0;
   color: #f4f4f0;
-  font-size: clamp(3.6rem, 9vw, 9rem);
+  font-size: clamp(3.5rem, 7.5vw, 7.5rem);
   font-weight: 500;
   letter-spacing: -0.095em;
   line-height: 0.84;
@@ -903,13 +913,13 @@ a:focus-visible {
   min-width: 0;
   color: #f4f4f0;
   text-decoration: none;
-  transition: transform 350ms ease, color 350ms ease;
+  transition: translate var(--duration-ui) var(--ease-cinematic), color var(--duration-ui) var(--ease-cinematic);
 }
 
 .contact__link:hover,
 .contact__link:focus-visible {
   color: #ffffff;
-  transform: translateX(0.35rem);
+  translate: 0.35rem 0;
 }
 
 .contact__link-value {
@@ -948,7 +958,7 @@ a:focus-visible {
   max-width: 8ch;
   margin: 0;
   color: #f4f4f0;
-  font-size: clamp(3.2rem, 6.4vw, 6.5rem);
+  font-size: clamp(3.2rem, 5.5vw, 5.8rem);
   font-weight: 500;
   letter-spacing: -0.09em;
   line-height: 0.86;
@@ -1070,7 +1080,7 @@ a:focus-visible {
   max-width: 9ch;
   margin: 0;
   color: #f4f4f0;
-  font-size: clamp(3rem, 6.4vw, 6.6rem);
+  font-size: clamp(3rem, 5.5vw, 5.8rem);
   font-weight: 500;
   letter-spacing: -0.09em;
   line-height: 0.86;
@@ -1314,10 +1324,8 @@ a:focus-visible {
 
   .skills__category:nth-child(1) { top: 5%; left: 0; }
   .skills__category:nth-child(2) { top: 45%; left: 0; }
-  .skills__category:nth-child(3) { top: 84%; left: 0; }
-  .skills__category:nth-child(4) { top: 5%; right: 0; }
-  .skills__category:nth-child(5) { top: 45%; right: 0; }
-  .skills__category:nth-child(6) { top: 84%; right: 0; }
+  .skills__category:nth-child(3) { top: 5%; right: 0; }
+  .skills__category:nth-child(4) { top: 45%; right: 0; }
 
   .skills__detail {
     top: 55%;
@@ -1331,16 +1339,7 @@ a:focus-visible {
 
 }
 
-@media (prefers-reduced-motion: reduce) {
-  *,
-  *::before,
-  *::after {
-    scroll-behavior: auto !important;
-    transition-duration: 0.01ms !important;
-    animation-duration: 0.01ms !important;
-    animation-iteration-count: 1 !important;
-  }
-
+@media (max-width: 768px) {
   .projects {
     min-height: calc(100svh + 2400px);
   }
@@ -1580,5 +1579,69 @@ a:focus-visible {
 
   .contact__link-value {
     font-size: 0.88rem;
+  }
+}
+
+@media (min-width: 769px) and (max-width: 1100px) {
+  .about__panel--profile,
+  .about__panel--statement {
+    padding-right: 8vw;
+    padding-left: 8vw;
+  }
+
+  .skills__intro {
+    max-width: 20rem;
+  }
+
+  .skills__visual {
+    top: 31%;
+    right: 4vw;
+    width: 88vw;
+    height: 60%;
+  }
+
+  .projects__navigation {
+    top: 29%;
+  }
+
+  .projects__gallery {
+    top: 18%;
+    right: 4vw;
+    width: 58vw;
+    height: 55%;
+  }
+
+  .projects__description {
+    right: 4vw;
+    width: min(31rem, 37vw);
+  }
+
+  .youth-korp__content {
+    left: 6vw;
+    width: min(31rem, 43vw);
+  }
+
+  .journey__content {
+    width: min(27rem, 38vw);
+  }
+
+  .knowledge__content {
+    width: min(28rem, 37vw);
+  }
+
+  .knowledge__cluster {
+    right: 2vw;
+    width: 62vw;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+    transition-duration: 0.01ms !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
   }
 }

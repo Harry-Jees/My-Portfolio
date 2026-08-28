@@ -2,6 +2,7 @@ import { useEffect, useRef } from 'react'
 import { gsap } from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import * as THREE from 'three'
+import portraitUrl from '../../../portrait.png'
 
 const PARTICLE_COUNT_DESKTOP = 26000
 const PARTICLE_COUNT_MOBILE = 11000
@@ -254,7 +255,7 @@ export function Hero() {
     })
 
     const loader = new THREE.TextureLoader()
-    const texture = loader.load('/portrait.png', (loadedTexture) => {
+    const texture = loader.load(portraitUrl, (loadedTexture) => {
       portrait = createPortraitTargets(loadedTexture.image, count)
       loadedTexture.dispose()
       startRendering()

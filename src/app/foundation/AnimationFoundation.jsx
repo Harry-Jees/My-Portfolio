@@ -10,10 +10,11 @@ export function AnimationFoundation({ children }) {
   const lenisRef = useRef(null)
 
   useEffect(() => {
+    const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches
     const lenis = new Lenis({
       autoRaf: false,
-      lerp: 0.22,
-      smoothWheel: true,
+      lerp: reducedMotion ? 1 : 0.22,
+      smoothWheel: !reducedMotion,
       syncTouch: false,
       wheelMultiplier: 1,
     })

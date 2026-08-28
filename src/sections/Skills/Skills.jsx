@@ -2,35 +2,29 @@ import { useEffect, useLayoutEffect, useRef, useState } from 'react'
 import { gsap } from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 
-// A many-to-many model: technologies can belong to multiple categories and
-// can connect to multiple documented projects.
+// Keep the documented capability language as the primary interaction model.
+// Supporting technologies are shown only where the guides establish a clear
+// relationship with that capability.
 const technologies = [
-  { name: 'Python', categories: ['Programming', 'Desktop Applications'], projects: ['Bro App'] },
-  { name: 'JavaScript', categories: ['Programming', 'Web'], projects: [] },
-  { name: 'HTML', categories: ['Web'], projects: [] },
-  { name: 'CSS', categories: ['Web'], projects: [] },
-  { name: 'Front-end development', categories: ['Web', 'Product / Experience'], projects: ['St. Thomas Public School Website'] },
-  { name: 'UI/UX', categories: ['Web', 'Product / Experience'], projects: [] },
-  { name: 'MySQL', categories: ['Desktop Applications'], projects: ['Bro App'] },
-  { name: 'CustomTkinter', categories: ['Desktop Applications'], projects: ['Bro App'] },
-  { name: 'Agentic development', categories: ['AI / Agentic Development'], projects: [] },
-  { name: 'Agentic orchestration', categories: ['AI / Agentic Development'], projects: [] },
-  { name: 'Prompt engineering', categories: ['AI / Agentic Development'], projects: [] },
-  { name: 'AI-powered applications', categories: ['AI / Agentic Development'], projects: ['Pillow Bud'] },
-  { name: 'Product development', categories: ['Product / Experience'], projects: [] },
-  { name: 'Creative problem solving', categories: ['Product / Experience'], projects: [] },
-  { name: 'Web animation', categories: ['Product / Experience'], projects: [] },
-  { name: '3D presentation', categories: ['Product / Experience'], projects: [] },
-  { name: 'Cinematic interaction', categories: ['Product / Experience'], projects: [] },
-  { name: 'Interactive experiences', categories: ['Product / Experience'], projects: [] },
+  { name: 'Agentic development' },
+  { name: 'Agentic orchestration' },
+  { name: 'Prompt engineering' },
+  { name: 'AI-powered applications' },
+  { name: 'Product development' },
+  { name: 'Creative problem solving' },
+  { name: 'UI/UX' },
+  { name: 'Front-end development' },
+  { name: 'Web animation' },
+  { name: '3D presentation' },
+  { name: 'Cinematic interaction' },
+  { name: 'Interactive experiences' },
 ]
 
 const categories = [
-  { name: 'Programming', technologies: ['Python', 'JavaScript'] },
-  { name: 'Web', technologies: ['HTML', 'CSS', 'JavaScript', 'Front-end development', 'UI/UX'] },
-  { name: 'Desktop Applications', technologies: ['Python', 'CustomTkinter', 'MySQL'] },
-  { name: 'AI / Agentic Development', technologies: ['Agentic development', 'Agentic orchestration', 'Prompt engineering', 'AI-powered applications'] },
-  { name: 'Product / Experience', technologies: ['UI/UX', 'Front-end development', 'Product development', 'Creative problem solving', 'Web animation', '3D presentation', 'Cinematic interaction', 'Interactive experiences'] },
+  { name: 'Agentic Development', technologies: ['Agentic development', 'Agentic orchestration', 'Prompt engineering', 'AI-powered applications'] },
+  { name: 'Loop Engineering', technologies: [] },
+  { name: 'Product Development Principles', technologies: ['Product development', 'Creative problem solving'] },
+  { name: 'UI/UX', technologies: ['UI/UX', 'Front-end development', 'Web animation', '3D presentation', 'Cinematic interaction', 'Interactive experiences'] },
 ]
 
 function clamp(value, min, max) {
@@ -39,10 +33,6 @@ function clamp(value, min, max) {
 
 function getTechnology(name) {
   return technologies.find((technology) => technology.name === name)
-}
-
-function getUniqueProjects(activeTechnologies) {
-  return [...new Set(activeTechnologies.flatMap((technology) => technology.projects))]
 }
 
 export function Skills() {
@@ -63,13 +53,11 @@ export function Skills() {
 
   const activeCategory = categories[activeIndex]
   const activeTechnologies = activeCategory.technologies.map(getTechnology)
-  const activeProjects = getUniqueProjects(activeTechnologies)
 
   const selectCategory = (index) => {
     manualSelectionProgressRef.current = scrollProgressRef.current
     activeIndexRef.current = index
     setActiveIndex(index)
-    gsap.fromTo(visualRef.current, { y: 8, opacity: 0.86 }, { y: 0, opacity: 1, duration: 0.45, ease: 'power2.out', overwrite: true })
   }
 
   useLayoutEffect(() => {
@@ -226,9 +214,6 @@ export function Skills() {
                 </span>
               ))}
             </div>
-            {activeProjects.length > 0 && (
-              <p className="skills__project-link">Used in <span>{activeProjects.join(' · ')}</span></p>
-            )}
           </div>
         </div>
       </div>

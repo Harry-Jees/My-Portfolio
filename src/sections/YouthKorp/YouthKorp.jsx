@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from 'react'
 import { gsap } from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import * as THREE from 'three'
+import logoUrl from '../../../yklogo.avif'
 
 const NODE_COUNT = 42
 
@@ -209,7 +210,7 @@ export function YouthKorp() {
         <canvas ref={canvasRef} className="youth-korp__canvas" aria-hidden="true" />
         <div ref={contentRef} className="youth-korp__content">
           <p ref={eyebrowRef} className="youth-korp__eyebrow">Community / connection</p>
-          <img ref={logoRef} className="youth-korp__logo" src="/yklogo.avif" alt="Youth Korp logo" />
+          <img ref={logoRef} className="youth-korp__logo" src={logoUrl} alt="Youth Korp logo" />
           <h2 ref={titleRef} id="youth-korp-title">Founder of Youth Korp</h2>
           <p ref={descriptionRef} className="youth-korp__description">A project incubation and innovation scaling community built by students for students.</p>
           {!webglAvailable && <p className="youth-korp__fallback">Youth Korp</p>}
