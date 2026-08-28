@@ -29,6 +29,8 @@ export function About() {
           x: 0,
           scale: 1,
         })
+        gsap.set(track, { x: 0 })
+        gsap.set(atmosphereRef.current, { x: 0, y: 0, opacity: 0.46 })
       }
 
       setInitial()
@@ -37,15 +39,16 @@ export function About() {
         trigger: root,
         pin: stage,
         start: 'top top',
-        end: () => `+=${window.matchMedia('(max-width: 768px)').matches ? 1900 : 2600}`,
+        end: () => `+=${window.matchMedia('(max-width: 768px)').matches ? 2300 : 3200}`,
         scrub: 0.35,
         anticipatePin: 1,
         invalidateOnRefresh: true,
+        onLeaveBack: setInitial,
         onUpdate: (self) => {
           const progress = self.progress
           const entrance = Math.min(1, progress / 0.12)
           const entranceEase = entrance * entrance * (3 - 2 * entrance)
-          const horizontalProgress = Math.min(1, Math.max(0, (progress - 0.08) / 0.84))
+          const horizontalProgress = Math.min(1, Math.max(0, (progress - 0.16) / 0.76))
           const maxTravel = travel()
 
           gsap.set(stage, {

@@ -1,5 +1,8 @@
 :root {
-  --font-display: "Aptos Display", "Segoe UI Variable Display", "Helvetica Neue", Arial, sans-serif;
+  --font-display: 'Bevellier', "Aptos Display", "Segoe UI Variable Display", "Helvetica Neue", Arial, sans-serif;
+  --font-hero: "Aptos Display", "Segoe UI Variable Display", "Helvetica Neue", Arial, sans-serif;
+  --font-hero-accent: 'Array', var(--font-hero);
+  --font-body: 'Ambient Space', Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
   --color-background: #050505;
   --color-surface: #090a09;
   --color-primary: #f4f4f0;
@@ -12,7 +15,7 @@
   --duration-ui: 350ms;
   --duration-scene: 900ms;
   color-scheme: dark;
-  font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  font-family: var(--font-body);
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   background: #050505;
@@ -23,6 +26,17 @@ h1,
 h2,
 h3,
 .hero__copy {
+  font-family: var(--font-display);
+}
+
+.about h2,
+.skills h2,
+.projects h2,
+.projects__description h3,
+.youth-korp h2,
+.journey h2,
+.knowledge h2,
+.contact h2 {
   font-family: var(--font-display);
 }
 
@@ -93,7 +107,7 @@ a:focus-visible {
 
 .about {
   position: relative;
-  min-height: calc(100vh + 2600px);
+  min-height: calc(100vh + 3200px);
   width: 100%;
   overflow: hidden;
   background: #050505;
@@ -151,7 +165,7 @@ a:focus-visible {
 .about__eyebrow {
   margin: 0 0 1.75rem;
   color: #b9bab3;
-  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  font-family: var(--font-body);
   font-size: clamp(0.7rem, 1vw, 0.9rem);
   letter-spacing: 0.14em;
   text-transform: uppercase;
@@ -163,8 +177,8 @@ a:focus-visible {
   margin: 0;
   color: #f4f4f0;
   font-size: clamp(4.2rem, 10vw, 10rem);
-  font-weight: 500;
-  letter-spacing: -0.09em;
+  font-weight: 400;
+  letter-spacing: -0.02em;
   line-height: 0.82;
   will-change: transform, opacity;
 }
@@ -234,7 +248,7 @@ a:focus-visible {
 }
 
 .skills__detail-label {
-  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  font-family: var(--font-body);
   letter-spacing: 0.1em;
   text-transform: uppercase;
 }
@@ -244,8 +258,8 @@ a:focus-visible {
   margin: 0;
   color: #f4f4f0;
   font-size: clamp(3.25rem, 6vw, 6rem);
-  font-weight: 500;
-  letter-spacing: -0.085em;
+  font-weight: 400;
+  letter-spacing: -0.02em;
   line-height: 0.88;
   will-change: transform, opacity;
 }
@@ -291,7 +305,7 @@ a:focus-visible {
   border: 1px solid #76776f;
   border-radius: 50%;
   color: #f4f4f0;
-  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  font-family: var(--font-body);
   font-size: 0;
   letter-spacing: 0.15em;
   text-transform: uppercase;
@@ -395,7 +409,7 @@ a:focus-visible {
 .projects__eyebrow,
 .projects__project-number,
 .projects__tab-number {
-  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  font-family: var(--font-body);
   letter-spacing: 0.11em;
   text-transform: uppercase;
 }
@@ -410,8 +424,8 @@ a:focus-visible {
   margin: 0;
   color: #f4f4f0;
   font-size: clamp(3.25rem, 6.8vw, 6.5rem);
-  font-weight: 500;
-  letter-spacing: -0.085em;
+  font-weight: 400;
+  letter-spacing: -0.02em;
   line-height: 0.84;
 }
 
@@ -476,8 +490,8 @@ a:focus-visible {
   margin: 0;
   color: #f4f4f0;
   font-size: clamp(1.65rem, 2.8vw, 3.1rem);
-  font-weight: 500;
-  letter-spacing: -0.065em;
+  font-weight: 400;
+  letter-spacing: -0.015em;
   line-height: 0.96;
 }
 
@@ -519,22 +533,23 @@ a:focus-visible {
   background: #050505;
 }
 
-.youth-korp__canvas {
-  position: absolute;
-  inset: 0;
-  display: block;
-  height: 100%;
-  width: 100%;
-}
-
 .youth-korp__content {
   position: absolute;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(14.4rem, 25.2rem);
   z-index: 2;
   top: 24%;
   left: clamp(1.25rem, 10vw, 10rem);
-  width: min(34rem, 42vw);
+  width: min(70rem, 80vw);
+  align-items: center;
+  gap: clamp(2rem, 8vw, 9rem);
   transform: none;
   will-change: transform, opacity;
+}
+
+.youth-korp__copy {
+  min-width: 0;
+  width: min(34rem, 42vw);
 }
 
 .journey {
@@ -568,8 +583,8 @@ a:focus-visible {
   margin: 0;
   color: #f4f4f0;
   font-size: clamp(3.2rem, 6vw, 6rem);
-  font-weight: 500;
-  letter-spacing: -0.09em;
+  font-weight: 400;
+  letter-spacing: -0.02em;
   line-height: 0.86;
 }
 
@@ -627,14 +642,14 @@ a:focus-visible {
   z-index: 3;
   top: 18%;
   left: clamp(1.25rem, 7vw, 7rem);
-  width: min(32rem, 34vw);
+  width: min(40rem, 42vw);
   transform: none;
   will-change: transform, opacity;
 }
 
 .knowledge__topic-index {
   color: #b9bab3;
-  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  font-family: var(--font-body);
   font-size: 0.66rem;
   letter-spacing: 0.13em;
   text-transform: uppercase;
@@ -643,7 +658,7 @@ a:focus-visible {
 .contact {
   position: relative;
   display: flex;
-  min-height: auto;
+  min-height: calc(100vh + 3rem);
   width: 100%;
   align-items: center;
   overflow: hidden;
@@ -651,6 +666,10 @@ a:focus-visible {
 }
 
 .contact__content {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(16rem, 24vw);
+  gap: clamp(3rem, 8vw, 9rem);
+  align-items: center;
   width: 100%;
   padding: clamp(3rem, 10vw, 10rem) var(--space-gutter) clamp(2rem, 4vw, 4rem);
 }
@@ -658,7 +677,7 @@ a:focus-visible {
 .contact__eyebrow,
 .contact__link-label {
   color: #b9bab3;
-  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  font-family: var(--font-body);
   font-size: 0.66rem;
   letter-spacing: 0.13em;
   text-transform: uppercase;
@@ -673,16 +692,17 @@ a:focus-visible {
   margin: 0;
   color: #f4f4f0;
   font-size: clamp(3.5rem, 7.5vw, 7.5rem);
-  font-weight: 500;
-  letter-spacing: -0.095em;
+  font-weight: 400;
+  letter-spacing: -0.02em;
   line-height: 0.84;
 }
 
 .contact__links {
   display: grid;
-  grid-template-columns: repeat(5, minmax(0, 1fr));
-  gap: clamp(0.75rem, 2.5vw, 3rem);
-  margin-top: clamp(4rem, 9vw, 8rem);
+  grid-template-columns: 1fr;
+  gap: 1.5rem;
+  margin-top: 0;
+  padding-bottom: 2rem;
 }
 
 .contact__link {
@@ -733,17 +753,26 @@ a:focus-visible {
   margin: 0;
   color: #f4f4f0;
   font-size: clamp(3.2rem, 5.5vw, 5.8rem);
-  font-weight: 500;
-  letter-spacing: -0.09em;
+  font-weight: 400;
+  letter-spacing: -0.02em;
   line-height: 0.86;
 }
 
 .knowledge__description {
-  max-width: 31ch;
+  max-width: 42rem;
   margin: 1.75rem 0 0;
   color: #d5d6cf;
-  font-size: clamp(0.95rem, 1.2vw, 1.2rem);
+  font-size: clamp(0.85rem, 1vw, 1rem);
   line-height: 1.45;
+  overflow-wrap: break-word;
+}
+
+.knowledge__description p {
+  margin: 0;
+}
+
+.knowledge__description p + p {
+  margin-top: 1rem;
 }
 
 .knowledge__cluster {
@@ -831,11 +860,28 @@ a:focus-visible {
   font-size: 0.6rem;
 }
 
+.knowledge__topic-detail {
+  position: absolute;
+  top: 84%;
+  right: 3vw;
+  width: min(32rem, 44vw);
+  min-height: 4.35rem;
+  margin: 0;
+  color: #d5d6cf;
+  font-size: clamp(0.82rem, 1vw, 1rem);
+  line-height: 1.45;
+  overflow-wrap: break-word;
+}
+
 .youth-korp__logo {
   display: block;
-  width: clamp(4rem, 7vw, 6rem);
+  width: clamp(14.4rem, 23.4vw, 25.2rem);
   height: auto;
-  margin: 0 0 1.5rem;
+  flex: 0 0 auto;
+  margin: 0;
+  align-self: center;
+  justify-self: center;
+  max-width: 100%;
   object-fit: contain;
 }
 
@@ -843,14 +889,14 @@ a:focus-visible {
   max-width: 9ch;
   margin: 0;
   color: #f4f4f0;
-  font-size: clamp(3rem, 5.5vw, 5.8rem);
+  font-size: clamp(3.25rem, 6.8vw, 6.5rem);
   font-weight: 500;
-  letter-spacing: -0.09em;
+  letter-spacing: -0.02em;
   line-height: 0.86;
 }
 
 .youth-korp__description {
-  max-width: 31ch;
+  max-width: 34ch;
   margin: 1.75rem 0 0;
   color: #d5d6cf;
   font-size: clamp(0.95rem, 1.25vw, 1.25rem);
@@ -877,13 +923,13 @@ a:focus-visible {
   position: absolute;
   z-index: 2;
   top: 50%;
-  max-width: 7ch;
+  width: min(20vw, 15rem);
   color: #ffffff;
-  font-family: var(--font-display);
-  font-size: clamp(2.4rem, 4.8vw, 5.4rem);
-  font-weight: 500;
-  letter-spacing: -0.075em;
-  line-height: 0.86;
+  font-family: var(--font-hero-accent);
+  font-size: clamp(2.85rem, 6vw, 6.7rem);
+  font-weight: 400;
+  letter-spacing: normal;
+  line-height: 0.94;
   will-change: transform, opacity;
 }
 
@@ -899,13 +945,22 @@ a:focus-visible {
   text-align: right;
 }
 
+.hero__copy--left {
+  width: min(21vw, 15rem);
+}
+
+.hero__copy--right {
+  width: min(24vw, 18rem);
+  font-size: clamp(2.6rem, 5vw, 5.9rem);
+}
+
 .hero__technical {
   position: absolute;
   z-index: 2;
   right: clamp(1.25rem, 7vw, 7rem);
   bottom: clamp(2.25rem, 7vw, 6rem);
   color: #a9aaa3;
-  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  font-family: var(--font-body);
   font-size: clamp(0.82rem, 1.1vw, 1rem);
   letter-spacing: 0.25em;
 }
@@ -936,9 +991,18 @@ a:focus-visible {
   }
 
   .hero__copy {
-    max-width: 6ch;
-    font-size: clamp(1.55rem, 8vw, 2.6rem);
-    letter-spacing: -0.06em;
+    width: min(29vw, 8.5rem);
+    font-size: clamp(1.95rem, 10vw, 3.35rem);
+    line-height: 0.96;
+  }
+
+  .hero__copy--left {
+    width: min(31vw, 8.5rem);
+  }
+
+  .hero__copy--right {
+    width: min(35vw, 10.5rem);
+    font-size: clamp(1.8rem, 9vw, 2.95rem);
   }
 
   .hero__copy--left {
@@ -958,7 +1022,7 @@ a:focus-visible {
   }
 
   .about {
-    min-height: calc(100svh + 1900px);
+    min-height: calc(100svh + 2300px);
   }
 
   .about__stage {
@@ -1120,12 +1184,19 @@ a:focus-visible {
     right: 1.25rem;
     left: 1.25rem;
     width: auto;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 38vw);
+    align-items: center;
+    gap: 1.5rem;
     transform: translateY(-50%);
   }
 
+  .youth-korp__copy {
+    width: auto;
+  }
+
   .youth-korp__logo {
-    width: 4.5rem;
-    margin-bottom: 1rem;
+    width: clamp(10.8rem, 41.4vw, 16.2rem);
+    max-width: 38vw;
   }
 
   .youth-korp h2 {
@@ -1188,9 +1259,9 @@ a:focus-visible {
   }
 
   .knowledge__description {
-    max-width: 30ch;
+    max-width: none;
     margin-top: 1.25rem;
-    font-size: 0.88rem;
+    font-size: 0.82rem;
   }
 
   .knowledge__cluster {
@@ -1207,16 +1278,26 @@ a:focus-visible {
     font-size: 0.66rem;
   }
 
+  .knowledge__topic-detail {
+    top: 84%;
+    right: 0.75rem;
+    left: 0.75rem;
+    width: auto;
+    min-height: 4.35rem;
+    font-size: 0.78rem;
+  }
+
   .knowledge__topic:nth-child(1) { top: 49%; left: 0; }
   .knowledge__topic:nth-child(2) { top: 16%; left: 21%; }
   .knowledge__topic:nth-child(3) { top: 75%; left: 37%; }
   .knowledge__topic:nth-child(4) { top: 37%; right: 0; }
 
   .contact {
-    min-height: auto;
+    min-height: calc(100svh + 3rem);
   }
 
   .contact__content {
+    display: block;
     padding: 5rem 1.25rem 4rem;
   }
 

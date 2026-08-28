@@ -52,8 +52,8 @@ function createNameTargets(count) {
   for (let i = 0; i < count; i += 1) {
     const source = samples[i % samples.length]
     const index = i * 3
-    positions[index] = (source.x / canvas.width - 0.5) * 4.6
-    positions[index + 1] = (0.5 - source.y / canvas.height) * 1.7
+    positions[index] = (source.x / canvas.width - 0.5) * 7.2
+    positions[index + 1] = (0.5 - source.y / canvas.height) * 2.8
     positions[index + 2] = (Math.random() - 0.5) * 0.12
     colors[index] = 0.95
     colors[index + 1] = 0.97

@@ -45,13 +45,13 @@ export function Projects() {
         invalidateOnRefresh: true,
         onUpdate: (self) => {
           const progress = self.progress
-          const reveal = clamp(progress / 0.12, 0, 1)
+          const reveal = clamp(progress / 0.24, 0, 1)
           const easedReveal = reveal * reveal * (3 - 2 * reveal)
           const index = Math.min(projects.length - 1, Math.floor(clamp(progress * projects.length, 0, projects.length - 0.001)))
           scrollProgressRef.current = progress
 
           gsap.set(introRef.current, { opacity: easedReveal, y: reducedMotion ? 0 : (1 - easedReveal) * 28 })
-          gsap.set(descriptionRef.current, { opacity: clamp((reveal - 0.22) * 1.3, 0, 1), y: reducedMotion ? 0 : (1 - clamp((reveal - 0.22) * 1.3, 0, 1)) * 18 })
+          gsap.set(descriptionRef.current, { opacity: clamp((reveal - 0.34) * 1.3, 0, 1), y: reducedMotion ? 0 : (1 - clamp((reveal - 0.34) * 1.3, 0, 1)) * 18 })
 
           if (manualSelectionProgressRef.current !== null && Math.abs(progress - manualSelectionProgressRef.current) < 0.08) return
           manualSelectionProgressRef.current = null
