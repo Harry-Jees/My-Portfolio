@@ -225,7 +225,6 @@ a:focus-visible {
 .skills__eyebrow,
 .skills__detail-label,
 .skills__category-index,
-.skills__transition,
 .skills__project-link {
   font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
   letter-spacing: 0.1em;
@@ -392,24 +391,6 @@ a:focus-visible {
 
 .skills__project-link span {
   color: #f4f4f0;
-}
-
-.skills__transition {
-  position: absolute;
-  right: clamp(1.25rem, 7vw, 7rem);
-  bottom: clamp(2rem, 7vw, 6rem);
-  display: flex;
-  gap: 1rem;
-  align-items: center;
-  color: #8f9089;
-  font-size: 0.62rem;
-}
-
-.skills__transition-line {
-  display: block;
-  width: clamp(2rem, 6vw, 6rem);
-  height: 1px;
-  background: #686962;
 }
 
 .hero__stage {
@@ -632,11 +613,6 @@ a:focus-visible {
     font-size: 0.62rem;
   }
 
-  .skills__transition {
-    right: 1.25rem;
-    bottom: 2.25rem;
-    font-size: 0.54rem;
-  }
 }
 
 @media (prefers-reduced-motion: reduce) {
