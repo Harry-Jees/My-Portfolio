@@ -12,7 +12,6 @@ const contactLinks = [
 
 export function Contact() {
   const rootRef = useRef(null)
-  const eyebrowRef = useRef(null)
   const titleRef = useRef(null)
   const linksRef = useRef(null)
 
@@ -20,7 +19,7 @@ export function Contact() {
     const root = rootRef.current
     const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches
     const context = gsap.context(() => {
-      const elements = [eyebrowRef.current, titleRef.current, ...linksRef.current.children]
+      const elements = [titleRef.current, ...linksRef.current.children]
       gsap.set(elements, { opacity: 0, y: reducedMotion ? 0 : 24 })
 
       gsap.timeline({
@@ -34,8 +33,7 @@ export function Contact() {
           duration: reducedMotion ? 0.01 : 0.9,
         },
       })
-        .to(eyebrowRef.current, { opacity: 1, y: 0 })
-        .to(titleRef.current, { opacity: 1, y: 0 }, '-=0.55')
+        .to(titleRef.current, { opacity: 1, y: 0 })
         .to(linksRef.current.children, { opacity: 1, y: 0, stagger: reducedMotion ? 0 : 0.09 }, '-=0.4')
     }, root)
 
@@ -45,7 +43,6 @@ export function Contact() {
   return (
     <section ref={rootRef} className="contact" aria-labelledby="contact-title">
       <div className="contact__content">
-        <p ref={eyebrowRef} className="contact__eyebrow">Let&apos;s connect</p>
         <h2 ref={titleRef} id="contact-title">Let&apos;s build something meaningful together.</h2>
 
         <nav ref={linksRef} className="contact__links" aria-label="Contact links">

@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react'
+import { useEffect, useRef } from 'react'
 import { gsap } from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import * as THREE from 'three'
@@ -42,12 +42,10 @@ export function YouthKorp() {
   const stageRef = useRef(null)
   const canvasRef = useRef(null)
   const contentRef = useRef(null)
-  const eyebrowRef = useRef(null)
   const logoRef = useRef(null)
   const titleRef = useRef(null)
   const descriptionRef = useRef(null)
   const progressRef = useRef(0)
-  const [webglAvailable, setWebglAvailable] = useState(true)
 
   useEffect(() => {
     const root = rootRef.current
@@ -94,7 +92,6 @@ export function YouthKorp() {
       lines = new THREE.LineSegments(linesGeometry, lineMaterial)
       scene.add(lines)
     } catch {
-      setWebglAvailable(false)
     }
 
     const resize = () => {
@@ -159,7 +156,7 @@ export function YouthKorp() {
     observer.observe(root)
 
     const context = gsap.context(() => {
-      gsap.set([contentRef.current, eyebrowRef.current, logoRef.current, titleRef.current, descriptionRef.current], {
+      gsap.set([contentRef.current, logoRef.current, titleRef.current, descriptionRef.current], {
         opacity: 0,
         y: reducedMotion ? 0 : 28,
       })
@@ -178,7 +175,6 @@ export function YouthKorp() {
           const easedReveal = reveal * reveal * (3 - 2 * reveal)
           progressRef.current = progress
           gsap.set(contentRef.current, { opacity: easedReveal, y: reducedMotion ? 0 : (1 - easedReveal) * 28 })
-          gsap.set(eyebrowRef.current, { opacity: easedReveal, y: reducedMotion ? 0 : (1 - easedReveal) * 24 })
           gsap.set(logoRef.current, { opacity: clamp((reveal - 0.08) * 1.35, 0, 1), y: reducedMotion ? 0 : (1 - clamp((reveal - 0.08) * 1.35, 0, 1)) * 20 })
           gsap.set(titleRef.current, { opacity: clamp((reveal - 0.2) * 1.4, 0, 1), y: reducedMotion ? 0 : (1 - clamp((reveal - 0.2) * 1.4, 0, 1)) * 22 })
           gsap.set(descriptionRef.current, { opacity: clamp((reveal - 0.34) * 1.4, 0, 1), y: reducedMotion ? 0 : (1 - clamp((reveal - 0.34) * 1.4, 0, 1)) * 18 })
@@ -209,13 +205,10 @@ export function YouthKorp() {
       <div ref={stageRef} className="youth-korp__stage">
         <canvas ref={canvasRef} className="youth-korp__canvas" aria-hidden="true" />
         <div ref={contentRef} className="youth-korp__content">
-          <p ref={eyebrowRef} className="youth-korp__eyebrow">Community / connection</p>
           <img ref={logoRef} className="youth-korp__logo" src={logoUrl} alt="Youth Korp logo" />
           <h2 ref={titleRef} id="youth-korp-title">Founder of Youth Korp</h2>
           <p ref={descriptionRef} className="youth-korp__description">A project incubation and innovation scaling community built by students for students.</p>
-          {!webglAvailable && <p className="youth-korp__fallback">Youth Korp</p>}
         </div>
-        <div className="youth-korp__caption" aria-hidden="true">students / ideas / connections</div>
       </div>
     </section>
   )

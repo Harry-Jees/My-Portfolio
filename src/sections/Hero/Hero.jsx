@@ -286,7 +286,6 @@ export function Hero() {
         <h1 id="hero-title" className="sr-only">Harry Jees</h1>
         <div className="hero__copy hero__copy--right" ref={rightCopyRef}>Welcome to my portfolio</div>
         <div ref={technicalRef} className="hero__technical" aria-hidden="true">&lt; / &gt;</div>
-        <div className="hero__scroll-note" aria-hidden="true">Scroll to enter</div>
       </div>
     </section>
   )

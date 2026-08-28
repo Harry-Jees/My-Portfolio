@@ -93,7 +93,6 @@ export function About() {
       <div ref={stageRef} className="about__stage">
         <div ref={atmosphereRef} className="about__atmosphere" aria-hidden="true">
           <span className="about__atmosphere-line" />
-          <span className="about__atmosphere-index">01 / 04</span>
         </div>
         <div ref={trackRef} className="about__track">
           <div className="about__panel about__panel--intro">

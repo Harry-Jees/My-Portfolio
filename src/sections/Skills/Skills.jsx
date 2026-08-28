@@ -39,9 +39,7 @@ export function Skills() {
   const rootRef = useRef(null)
   const stageRef = useRef(null)
   const visualRef = useRef(null)
-  const eyebrowRef = useRef(null)
   const titleRef = useRef(null)
-  const introRef = useRef(null)
   const categoryRefs = useRef([])
   const technologyRefs = useRef({})
   const scrollProgressRef = useRef(0)
@@ -113,7 +111,7 @@ export function Skills() {
     const stage = stageRef.current
     const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches
     const context = gsap.context(() => {
-      gsap.set([eyebrowRef.current, titleRef.current, introRef.current, visualRef.current], {
+      gsap.set([titleRef.current, visualRef.current], {
         opacity: 0,
         y: reducedMotion ? 0 : 32,
       })
@@ -132,9 +130,7 @@ export function Skills() {
           const easedReveal = reveal * reveal * (3 - 2 * reveal)
           scrollProgressRef.current = progress
 
-          gsap.set(eyebrowRef.current, { opacity: easedReveal, y: reducedMotion ? 0 : (1 - easedReveal) * 32 })
           gsap.set(titleRef.current, { opacity: clamp((reveal - 0.1) * 1.25, 0, 1), y: reducedMotion ? 0 : (1 - clamp((reveal - 0.1) * 1.25, 0, 1)) * 32 })
-          gsap.set(introRef.current, { opacity: clamp((reveal - 0.26) * 1.4, 0, 1), y: reducedMotion ? 0 : (1 - clamp((reveal - 0.26) * 1.4, 0, 1)) * 24 })
           gsap.set(visualRef.current, {
             opacity: clamp((reveal - 0.38) * 1.5, 0, 1),
             y: reducedMotion ? 0 : (1 - clamp((reveal - 0.38) * 1.5, 0, 1)) * 22,
@@ -160,9 +156,7 @@ export function Skills() {
     <section ref={rootRef} className="skills" aria-labelledby="skills-title">
       <div ref={stageRef} className="skills__stage">
         <div className="skills__intro">
-          <p ref={eyebrowRef} className="skills__eyebrow">Skills / capability map</p>
           <h2 ref={titleRef} id="skills-title">Tools I use to turn ideas into things.</h2>
-          <p ref={introRef} className="skills__intro-copy">Technology becomes useful when it connects to something real.</p>
         </div>
 
         <div ref={visualRef} className="skills__visual">
@@ -183,7 +177,7 @@ export function Skills() {
             ))}
           </svg>
 
-          <div className="skills__hub" aria-hidden="true"><span>build</span></div>
+          <div className="skills__hub" aria-hidden="true" />
 
           <div className="skills__categories" role="group" aria-label="Skill categories">
             {categories.map((category, index) => (

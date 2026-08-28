@@ -87,7 +87,6 @@ export function Knowledge() {
     <section ref={rootRef} className="knowledge" aria-labelledby="knowledge-title">
       <div ref={stageRef} className="knowledge__stage">
         <div ref={contentRef} className="knowledge__content">
-          <p ref={eyebrowRef} className="knowledge__eyebrow">Knowledge / sharing</p>
           <h2 ref={titleRef} id="knowledge-title">Ideas are better when they are shared.</h2>
           <p ref={descriptionRef} className="knowledge__description">
             Harry has experience taking classes and teaching sessions in colleges.
@@ -119,7 +118,6 @@ export function Knowledge() {
           </div>
         </div>
 
-        <p className="knowledge__caption" aria-hidden="true">knowledge passed between people</p>
       </div>
     </section>
   )
