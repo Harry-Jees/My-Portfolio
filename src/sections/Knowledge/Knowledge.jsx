@@ -29,10 +29,8 @@ export function Knowledge() {
   const rootRef = useRef(null)
   const stageRef = useRef(null)
   const contentRef = useRef(null)
-  const eyebrowRef = useRef(null)
   const titleRef = useRef(null)
   const descriptionRef = useRef(null)
-  const topicDetailRef = useRef(null)
   const clusterRef = useRef(null)
   const activeIndexRef = useRef(0)
   const scrollProgressRef = useRef(0)
@@ -50,7 +48,7 @@ export function Knowledge() {
     const stage = stageRef.current
     const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches
     const context = gsap.context(() => {
-      gsap.set([contentRef.current, eyebrowRef.current, titleRef.current, clusterRef.current, topicDetailRef.current], {
+      gsap.set([contentRef.current, titleRef.current, clusterRef.current], {
         opacity: 0,
         y: reducedMotion ? 0 : 28,
       })
@@ -71,7 +69,6 @@ export function Knowledge() {
           scrollProgressRef.current = progress
 
           gsap.set(contentRef.current, { opacity: easedReveal, y: reducedMotion ? 0 : (1 - easedReveal) * 28 })
-          gsap.set(eyebrowRef.current, { opacity: easedReveal, y: reducedMotion ? 0 : (1 - easedReveal) * 22 })
           gsap.set(titleRef.current, { opacity: clamp((reveal - 0.1) * 1.3, 0, 1), y: reducedMotion ? 0 : (1 - clamp((reveal - 0.1) * 1.3, 0, 1)) * 22 })
           gsap.set(clusterRef.current, {
             opacity: clamp((reveal - 0.18) * 1.25, 0, 1),
@@ -80,11 +77,6 @@ export function Knowledge() {
             rotation: reducedMotion ? 0 : (1 - easedReveal) * -3,
             scale: reducedMotion ? 1 : 0.94 + easedReveal * 0.06,
           })
-          gsap.set(topicDetailRef.current, {
-            opacity: clamp((reveal - 0.28) * 1.35, 0, 1),
-            y: reducedMotion ? 0 : (1 - clamp((reveal - 0.28) * 1.35, 0, 1)) * 16,
-          })
-
           if (manualSelectionProgressRef.current !== null && Math.abs(progress - manualSelectionProgressRef.current) < 0.08) return
           manualSelectionProgressRef.current = null
           if (index !== activeIndexRef.current) {
@@ -117,18 +109,16 @@ export function Knowledge() {
                 type="button"
                 className={`knowledge__topic ${index === activeIndex ? 'is-active' : ''}`}
                 aria-pressed={index === activeIndex}
+                aria-current={index === activeIndex ? 'step' : undefined}
                 onClick={() => selectTopic(index)}
               >
                 <span className="knowledge__topic-index">0{index + 1}</span>
-                <span>{topic.name}</span>
+                <span className="knowledge__topic-heading">{topic.name}</span>
+                <span className="knowledge__topic-description">{topic.description}</span>
               </button>
             ))}
           </div>
         </div>
-
-        <p ref={topicDetailRef} className="knowledge__topic-detail" aria-live="polite">
-          {topics[activeIndex].description}
-        </p>
 
       </div>
     </section>
