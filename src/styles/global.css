@@ -668,6 +668,93 @@ a:focus-visible {
   font-size: 0.62rem;
 }
 
+.youth-korp {
+  position: relative;
+  min-height: calc(100vh + 2400px);
+  width: 100%;
+  overflow: hidden;
+  background: #050505;
+}
+
+.youth-korp__stage {
+  position: relative;
+  height: 100vh;
+  width: 100%;
+  overflow: hidden;
+  background: #050505;
+}
+
+.youth-korp__canvas {
+  position: absolute;
+  inset: 0;
+  display: block;
+  height: 100%;
+  width: 100%;
+}
+
+.youth-korp__content {
+  position: absolute;
+  z-index: 2;
+  top: 50%;
+  left: clamp(1.25rem, 10vw, 10rem);
+  width: min(34rem, 42vw);
+  transform: translateY(-50%);
+  will-change: transform, opacity;
+}
+
+.youth-korp__eyebrow,
+.youth-korp__caption {
+  color: #b9bab3;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  font-size: 0.66rem;
+  letter-spacing: 0.13em;
+  text-transform: uppercase;
+}
+
+.youth-korp__eyebrow {
+  margin: 0 0 1.35rem;
+}
+
+.youth-korp__logo {
+  display: block;
+  width: clamp(4rem, 7vw, 6rem);
+  height: auto;
+  margin: 0 0 1.5rem;
+  object-fit: contain;
+}
+
+.youth-korp h2 {
+  max-width: 9ch;
+  margin: 0;
+  color: #f4f4f0;
+  font-size: clamp(3rem, 6.4vw, 6.6rem);
+  font-weight: 500;
+  letter-spacing: -0.09em;
+  line-height: 0.86;
+}
+
+.youth-korp__description {
+  max-width: 31ch;
+  margin: 1.75rem 0 0;
+  color: #d5d6cf;
+  font-size: clamp(0.95rem, 1.25vw, 1.25rem);
+  line-height: 1.45;
+}
+
+.youth-korp__fallback {
+  margin: 1rem 0 0;
+  color: #8b8c85;
+  font-size: 0.8rem;
+}
+
+.youth-korp__caption {
+  position: absolute;
+  z-index: 2;
+  right: clamp(1.25rem, 7vw, 7rem);
+  bottom: clamp(2rem, 7vw, 6rem);
+  color: #898a83;
+}
+
 .skills__project-link {
   margin: 1.4rem 0 0;
   color: #8c8d86;
@@ -988,5 +1075,42 @@ a:focus-visible {
   .project-visual__school-type strong,
   .project-visual__youth-type strong {
     font-size: 1.2rem;
+  }
+
+  .youth-korp {
+    min-height: calc(100svh + 1900px);
+  }
+
+  .youth-korp__stage {
+    height: 100svh;
+  }
+
+  .youth-korp__content {
+    top: 38%;
+    right: 1.25rem;
+    left: 1.25rem;
+    width: auto;
+    transform: translateY(-50%);
+  }
+
+  .youth-korp__logo {
+    width: 4.5rem;
+    margin-bottom: 1rem;
+  }
+
+  .youth-korp h2 {
+    font-size: clamp(3rem, 15vw, 5.5rem);
+  }
+
+  .youth-korp__description {
+    max-width: 30ch;
+    margin-top: 1.25rem;
+    font-size: 0.9rem;
+  }
+
+  .youth-korp__caption {
+    right: 1.25rem;
+    bottom: 2.25rem;
+    font-size: 0.55rem;
   }
 }
