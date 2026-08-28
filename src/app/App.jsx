@@ -4,6 +4,9 @@ import { About } from '../sections/About/About.jsx'
 import { Skills } from '../sections/Skills/Skills.jsx'
 import { Projects } from '../sections/Projects/Projects.jsx'
 import { YouthKorp } from '../sections/YouthKorp/YouthKorp.jsx'
+import { Journey } from '../sections/Journey/Journey.jsx'
+import { Knowledge } from '../sections/Knowledge/Knowledge.jsx'
+import { Contact } from '../sections/Contact/Contact.jsx'
 
 function App() {
   return (
@@ -14,6 +17,9 @@ function App() {
         <Skills />
         <Projects />
         <YouthKorp />
+        <Journey />
+        <Knowledge />
+        <Contact />
       </main>
     </AnimationFoundation>
   )
