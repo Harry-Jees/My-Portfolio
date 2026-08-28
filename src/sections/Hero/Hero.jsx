@@ -52,8 +52,8 @@ function createNameTargets(count) {
   for (let i = 0; i < count; i += 1) {
     const source = samples[i % samples.length]
     const index = i * 3
-    positions[index] = (source.x / canvas.height - canvas.width / canvas.height / 2) * 4.7
-    positions[index + 1] = (0.5 - source.y / canvas.height) * 1.7
+    positions[index] = (source.x / canvas.width - 0.5) * 7.2
+    positions[index + 1] = (0.5 - source.y / canvas.height) * 2.8
     positions[index + 2] = (Math.random() - 0.5) * 0.12
     colors[index] = 0.95
     colors[index + 1] = 0.97
@@ -286,7 +286,6 @@ export function Hero() {
         <h1 id="hero-title" className="sr-only">Harry Jees</h1>
         <div className="hero__copy hero__copy--right" ref={rightCopyRef}>Welcome to my portfolio</div>
         <div ref={technicalRef} className="hero__technical" aria-hidden="true">&lt; / &gt;</div>
-        <div className="hero__scroll-note" aria-hidden="true">Scroll to enter</div>
       </div>
     </section>
   )

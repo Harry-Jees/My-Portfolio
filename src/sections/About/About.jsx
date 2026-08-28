@@ -21,14 +21,16 @@ export function About() {
     const context = gsap.context(() => {
       const setInitial = () => {
         gsap.set([labelRef.current, headingRef.current, introRef.current, statementRef.current], {
-          opacity: 0,
-          x: reducedMotion ? 0 : 48,
+          opacity: 1,
+          x: 0,
         })
         gsap.set(stage, {
-          opacity: 0,
-          x: reducedMotion ? 0 : '8vw',
-          scale: reducedMotion ? 1 : 0.985,
+          opacity: 1,
+          x: 0,
+          scale: 1,
         })
+        gsap.set(track, { x: 0 })
+        gsap.set(atmosphereRef.current, { x: 0, y: 0, opacity: 0.46 })
       }
 
       setInitial()
@@ -37,19 +39,20 @@ export function About() {
         trigger: root,
         pin: stage,
         start: 'top top',
-        end: () => `+=${window.matchMedia('(max-width: 768px)').matches ? 1900 : 2600}`,
+        end: () => `+=${window.matchMedia('(max-width: 768px)').matches ? 2300 : 3200}`,
         scrub: 0.35,
         anticipatePin: 1,
         invalidateOnRefresh: true,
+        onLeaveBack: setInitial,
         onUpdate: (self) => {
           const progress = self.progress
           const entrance = Math.min(1, progress / 0.12)
           const entranceEase = entrance * entrance * (3 - 2 * entrance)
-          const horizontalProgress = Math.min(1, Math.max(0, (progress - 0.08) / 0.84))
+          const horizontalProgress = Math.min(1, Math.max(0, (progress - 0.16) / 0.76))
           const maxTravel = travel()
 
           gsap.set(stage, {
-            opacity: entranceEase,
+            opacity: 1,
             x: reducedMotion ? 0 : `${(1 - entranceEase) * 8}vw`,
             scale: reducedMotion ? 1 : 0.985 + entranceEase * 0.015,
           })
@@ -60,20 +63,20 @@ export function About() {
             opacity: 0.46 - progress * 0.12,
           })
           gsap.set(labelRef.current, {
-            opacity: Math.min(1, entranceEase * 1.5),
+            opacity: 1,
             x: reducedMotion ? 0 : (1 - entranceEase) * 48,
           })
           gsap.set(headingRef.current, {
-            opacity: Math.min(1, Math.max(0, (entrance - 0.12) * 1.35)),
-            x: reducedMotion ? 0 : (1 - Math.min(1, Math.max(0, (entrance - 0.12) * 1.35))) * 48,
+            opacity: 1,
+            x: reducedMotion ? 0 : (1 - entranceEase) * 48,
           })
           gsap.set(introRef.current, {
-            opacity: Math.min(1, Math.max(0, (entrance - 0.3) * 1.5)),
-            x: reducedMotion ? 0 : (1 - Math.min(1, Math.max(0, (entrance - 0.3) * 1.5))) * 42,
+            opacity: 1,
+            x: reducedMotion ? 0 : (1 - entranceEase) * 42,
           })
           gsap.set(statementRef.current, {
-            opacity: Math.min(1, Math.max(0, (entrance - 0.48) * 1.8)),
-            x: reducedMotion ? 0 : (1 - Math.min(1, Math.max(0, (entrance - 0.48) * 1.8))) * 36,
+            opacity: 1,
+            x: reducedMotion ? 0 : (1 - entranceEase) * 36,
           })
         },
       })
@@ -93,7 +96,6 @@ export function About() {
       <div ref={stageRef} className="about__stage">
         <div ref={atmosphereRef} className="about__atmosphere" aria-hidden="true">
           <span className="about__atmosphere-line" />
-          <span className="about__atmosphere-index">01 / 04</span>
         </div>
         <div ref={trackRef} className="about__track">
           <div className="about__panel about__panel--intro">
