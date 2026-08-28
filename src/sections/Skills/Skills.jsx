@@ -6,10 +6,12 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger'
 // Supporting technologies are shown only where the guides establish a clear
 // relationship with that capability.
 const technologies = [
-  { name: 'Agentic development' },
   { name: 'Agentic orchestration' },
   { name: 'Prompt engineering' },
   { name: 'AI-powered applications' },
+  { name: 'Requirement gathering' },
+  { name: 'Deployment phases' },
+  { name: 'Documentation' },
   { name: 'Product development' },
   { name: 'Creative problem solving' },
   { name: 'UI/UX' },
@@ -21,8 +23,8 @@ const technologies = [
 ]
 
 const categories = [
-  { name: 'Agentic Development', technologies: ['Agentic development', 'Agentic orchestration', 'Prompt engineering', 'AI-powered applications'] },
-  { name: 'Loop Engineering', technologies: [] },
+  { name: 'Agentic Development', technologies: ['Agentic orchestration', 'Prompt engineering', 'AI-powered applications'] },
+  { name: 'Loop Engineering', technologies: ['Requirement gathering', 'Deployment phases', 'Documentation'] },
   { name: 'Product Development Principles', technologies: ['Product development', 'Creative problem solving'] },
   { name: 'UI/UX', technologies: ['UI/UX', 'Front-end development', 'Web animation', '3D presentation', 'Cinematic interaction', 'Interactive experiences'] },
 ]
@@ -189,7 +191,6 @@ export function Skills() {
                 aria-pressed={index === activeIndex}
                 onClick={() => selectCategory(index)}
               >
-                <span className="skills__category-index">0{index + 1}</span>
                 <span>{category.name}</span>
               </button>
             ))}
