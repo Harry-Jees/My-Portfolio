@@ -163,6 +163,14 @@ export function Hero() {
     let running = true
     let settledTimer = 0
 
+    const stopRenderingWhenIdle = () => {
+      clearTimeout(settledTimer)
+      settledTimer = window.setTimeout(() => {
+        running = false
+        cancelAnimationFrame(animationFrame)
+      }, 180)
+    }
+
     const resize = () => {
       const width = stage.clientWidth
       const height = stage.clientHeight
@@ -231,13 +239,7 @@ export function Hero() {
       onUpdate: (self) => {
         state.progress = self.progress
         startRendering()
-        clearTimeout(settledTimer)
-        if (self.progress > 0.995) {
-          settledTimer = window.setTimeout(() => {
-            running = false
-            cancelAnimationFrame(animationFrame)
-          }, 900)
-        }
+        stopRenderingWhenIdle()
         gsap.set(leftCopyRef.current, {
           xPercent: -self.progress * 115,
           yPercent: -self.progress * 25,
@@ -259,12 +261,14 @@ export function Hero() {
       portrait = createPortraitTargets(loadedTexture.image, count)
       loadedTexture.dispose()
       startRendering()
+      stopRenderingWhenIdle()
     })
     texture.colorSpace = THREE.SRGBColorSpace
 
     resize()
     window.addEventListener('resize', resize)
     render()
+    stopRenderingWhenIdle()
 
     return () => {
       clearTimeout(settledTimer)
