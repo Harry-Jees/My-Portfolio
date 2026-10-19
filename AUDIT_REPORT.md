@@ -10,7 +10,7 @@ This review inspected the tracked Vite/React source, animation foundation, secti
 ## Findings
 
 ### High — animation workload can run continuously
-The hero uses 26,000 desktop / 11,000 mobile particles and updates every particle on each animation frame. Before this change, its render loop only stopped after the scroll progress reached the very end, so it could keep using CPU/GPU while the user was idle elsewhere in the pinned hero scene. This should be addressed with an idle-stop timer that resumes on ScrollTrigger updates, then profile on low-end mobile hardware.
+The hero uses 26,000 desktop / 11,000 mobile particles and updates every particle on each animation frame while active. Fixed in this branch: the render loop now stops after 180 ms without scroll/texture updates and resumes when ScrollTrigger progresses. Profile on low-end mobile hardware before treating this as resolved in production.
 
 ### Medium — missing discoverability metadata
 The original HTML lacked a meta description, canonical URL, Open Graph/Twitter metadata, robots directives, and sitemap/robots files. Added in this branch; confirm the canonical domain is the final preferred production domain before merging.
