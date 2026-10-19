@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://harryjees.vercel.app/sitemap.xml

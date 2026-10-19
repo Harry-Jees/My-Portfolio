@@ -1,3 +1,30 @@
+.skip-link {
+  position: fixed;
+  z-index: 10000;
+  top: 1rem;
+  left: 1rem;
+  padding: 0.85rem 1rem;
+  transform: translateY(calc(-100% - 1.5rem));
+  border: 1px solid #f4f4f0;
+  border-radius: 0.5rem;
+  background: #f4f4f0;
+  color: #050505;
+  font-size: 0.95rem;
+  font-weight: 600;
+  text-decoration: none;
+  transition: transform 180ms ease;
+}
+
+.skip-link:focus {
+  transform: translateY(0);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .skip-link {
+    transition: none;
+  }
+}
+
 :root {
   --font-display: 'Bevellier', "Aptos Display", "Segoe UI Variable Display", "Helvetica Neue", Arial, sans-serif;
   --font-hero: "Aptos Display", "Segoe UI Variable Display", "Helvetica Neue", Arial, sans-serif;

@@ -1,0 +1,38 @@
+name: Portfolio quality checks
+
+on:
+  push:
+    branches: [main, global-standards-2026-10]
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: portfolio-quality-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  build:
+    name: Production build
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - name: Install dependencies
+        run: npm ci
+      - name: Build production site
+        run: npm run build
+      - name: Verify SEO and deployment files
+        run: |
+          test -s dist/index.html
+          test -s dist/robots.txt
+          test -s dist/sitemap.xml
+          grep -q 'name="description"' dist/index.html
+          grep -q 'rel="canonical"' dist/index.html
