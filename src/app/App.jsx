@@ -10,7 +10,7 @@ import { Contact } from '../sections/Contact/Contact.jsx'
 function App() {
   return (
     <AnimationFoundation>
-      <main className="app-shell" aria-label="Portfolio application">
+      <main id="main-content" className="app-shell" aria-label="Harry Jees portfolio">
         <Hero />
         <About />
         <Skills />
