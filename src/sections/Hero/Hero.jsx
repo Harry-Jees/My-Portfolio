@@ -162,6 +162,21 @@ export function Hero() {
     let animationFrame = 0
     let running = true
     let settledTimer = 0
+    const pointer = { x: 0, y: 0, active: false }
+    const onPointerMove = (event) => {
+      if (reducedMotion) return
+      const bounds = stage.getBoundingClientRect()
+      pointer.x = ((event.clientX - bounds.left) / bounds.width - 0.5) * 7.2
+      pointer.y = (0.5 - (event.clientY - bounds.top) / bounds.height) * 4.1
+      pointer.active = true
+      startRendering()
+      stopRenderingWhenIdle()
+    }
+    const onPointerLeave = () => {
+      pointer.active = false
+      startRendering()
+      stopRenderingWhenIdle()
+    }
 
     const stopRenderingWhenIdle = () => {
       clearTimeout(settledTimer)
@@ -200,8 +215,21 @@ export function Hero() {
         const targetX = lerp(nameX, portraitTargets[index], morph)
         const targetY = lerp(nameY, portraitTargets[index + 1], morph)
         const targetZ = lerp(nameZ, portraitTargets[index + 2], morph)
-        positions[index] = targetX + scatter.directions[index] * easeExplosion + ambient
-        positions[index + 1] = targetY + scatter.directions[index + 1] * easeExplosion
+        let cursorX = 0
+        let cursorY = 0
+        if (pointer.active && !reducedMotion) {
+          const dx = targetX - pointer.x
+          const dy = targetY - pointer.y
+          const distance = Math.sqrt(dx * dx + dy * dy)
+          const radius = 0.72
+          if (distance < radius && distance > 0.001) {
+            const force = ((radius - distance) / radius) * 0.22
+            cursorX = (dx / distance) * force
+            cursorY = (dy / distance) * force
+          }
+        }
+        positions[index] = targetX + scatter.directions[index] * easeExplosion + ambient + cursorX
+        positions[index + 1] = targetY + scatter.directions[index + 1] * easeExplosion + cursorY
         positions[index + 2] = targetZ + scatter.directions[index + 2] * easeExplosion
         colors[index] = lerp(name.colors[index], portraitColors[index], morph)
         colors[index + 1] = lerp(name.colors[index + 1], portraitColors[index + 1], morph)
@@ -267,6 +295,8 @@ export function Hero() {
 
     resize()
     window.addEventListener('resize', resize)
+    stage.addEventListener('pointermove', onPointerMove, { passive: true })
+    stage.addEventListener('pointerleave', onPointerLeave)
     render()
     stopRenderingWhenIdle()
 
@@ -275,6 +305,8 @@ export function Hero() {
       cancelAnimationFrame(animationFrame)
       trigger.kill()
       window.removeEventListener('resize', resize)
+      stage.removeEventListener('pointermove', onPointerMove)
+      stage.removeEventListener('pointerleave', onPointerLeave)
       geometry.dispose()
       material.dispose()
       renderer.dispose()
