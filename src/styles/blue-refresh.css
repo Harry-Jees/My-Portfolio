@@ -1,0 +1,42 @@
+/* Blue identity refresh — layered over the existing portfolio system. */
+:root {
+  --portfolio-blue: #3b82f6;
+  --portfolio-blue-bright: #60a5fa;
+  --portfolio-ink: #070b14;
+  --portfolio-paper: #f7f9fc;
+}
+html { scroll-behavior: smooth; }
+body {
+  background: var(--portfolio-ink);
+  color: var(--portfolio-paper);
+  selection-background-color: var(--portfolio-blue);
+}
+::selection { background: rgba(59,130,246,.78); color: white; }
+a, button { -webkit-tap-highlight-color: transparent; }
+a:focus-visible, button:focus-visible { outline: 2px solid var(--portfolio-blue-bright); outline-offset: 5px; }
+.app-shell { overflow: clip; position: relative; isolation: isolate; }
+.app-shell::before {
+  content: ""; position: fixed; inset: 0; z-index: -1; pointer-events: none;
+  background:
+    radial-gradient(ellipse at 8% 12%, rgba(37,99,235,.15), transparent 34%),
+    radial-gradient(ellipse at 92% 56%, rgba(59,130,246,.08), transparent 30%),
+    linear-gradient(180deg, #070b14 0%, #090e19 46%, #070b14 100%);
+}
+.hero { position: relative; background: transparent; }
+.hero__stage { isolation: isolate; background: transparent; }
+.hero__canvas { filter: drop-shadow(0 0 24px rgba(59,130,246,.15)); }
+.hero__copy {
+  color: #f7f9fc;
+  letter-spacing: -.055em;
+  text-shadow: 0 0 42px rgba(59,130,246,.2);
+}
+.hero__copy--left { color: #93c5fd; }
+.hero__copy--right { color: rgba(247,249,252,.8); }
+.hero__technical { color: #60a5fa; text-shadow: 0 0 30px rgba(59,130,246,.5); }
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; }
+}
+@media (max-width: 768px) {
+  .hero__canvas { filter: drop-shadow(0 0 14px rgba(59,130,246,.12)); }
+}
